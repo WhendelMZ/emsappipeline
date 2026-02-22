@@ -2,6 +2,17 @@ include {PREPROCESSING} from './workflows/PREPROCESSING.nf'
 
 workflow {
 
+    // Check if manifest parameter is provided
+    if (!params.manifest) {
+        log.error("Manifest file is required. Please provide it using --manifest <path_to_manifest>")
+        exit 1
+    }
+
+    if (!file(params.manifest).exists()) {
+        log.error("Manifest file not found at: ${params.manifest}")
+        exit 1
+    }
+
     PREPROCESSING(channel.fromPath(params.manifest))   
     //preprocess_manifest.out.view {
     //    it -> println "Processed manifest: ${it[0]}, Merged FASTA: ${it[1]}" 
@@ -22,6 +33,7 @@ workflow {
     //PREPROCESSING()
 
 }
+
 
 
 
