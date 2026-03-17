@@ -14,12 +14,10 @@ workflow {
     }
 
     PREPROCESSING(channel.fromPath(params.manifest))   
-    //preprocess_manifest.out.view {
+    //PREPROCESSING.out.view {
     //    it -> println "Processed manifest: ${it[0]}, Merged FASTA: ${it[1]}" 
-    //    }   
-
-    // align the manifest and fasta files
-
+    //}    
+    
      
     //preprocess_In_ch = input_ch.buffer( size: params.buffer_size, remainder: true )
 
