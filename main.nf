@@ -1,4 +1,5 @@
 include {PREPROCESSING} from './workflows/PREPROCESSING.nf'
+include {PREDICT3D} from './workflows/PREDICT3D.nf'
 
 workflow {
 
@@ -13,22 +14,9 @@ workflow {
         exit 1
     }
 
-    PREPROCESSING(channel.fromPath(params.manifest))   
-    //PREPROCESSING.out.view {
-    //    it -> println "Processed manifest: ${it[0]}, Merged FASTA: ${it[1]}" 
-    //}    
-    
-     
-    //preprocess_In_ch = input_ch.buffer( size: params.buffer_size, remainder: true )
+    PREPROCESSING(channel.fromPath(params.manifest))
 
-    //preprocess_fasta(preprocess_In_ch)
-    //channel.fromPath('data/sample.fa')
-    //.splitFasta(record: [id: true, seqString: true])
-    //.filter { record -> record.id =~ /^ENST0.*/ }
-    //.view { record -> record.seqString }
-    
-    // pre_processing of protein fasta files
-    //PREPROCESSING()
+    PREDICT3D(PREPROCESSING.out) // channel of tuples (meta, seq)
 
 }
 
