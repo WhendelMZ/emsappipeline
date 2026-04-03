@@ -17,11 +17,9 @@ workflow {
     PREPROCESSING(channel.fromPath(params.manifest))
 
     PREDICT3D(PREPROCESSING.out) // channel of tuples (meta, seq)
+    PREDICT3D.out.view { it -> it }
 
-}
-
-
-
+    }
 
 def parse_mnf(mnf) {
     /*

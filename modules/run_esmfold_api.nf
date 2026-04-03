@@ -10,7 +10,7 @@ process run_esmfold_api {
     script:
         // WARNING: Very long sequences (>5–10k aa) may exceed shell limits.
         """
-        run_emsfold_esmatlas_api.py \
+        run_esmfold_esmatlas_api.py \
             --seq ${seq} \
             --out ${meta.id}.pdb \
         """
