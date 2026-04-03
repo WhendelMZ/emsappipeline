@@ -1,0 +1,3 @@
+id,fasta_file_path,label
+S1,/Users/marinho/Projects/emsappipeline/tests/spike_sars-cov-2.fa,A
+S2,/Users/marinho/Projects/emsappipeline/tests/spike_sars-cov-2.fa,B
